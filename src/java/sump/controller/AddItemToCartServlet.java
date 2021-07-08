@@ -67,16 +67,18 @@ public class AddItemToCartServlet extends HttpServlet {
                         if (outOfStockItem == null) {
                             outOfStockItem = new OutOfStockItem();
                         }
-                        outOfStockItem.add(sku);
+                        outOfStockItem.addItem(sku);
                         session.setAttribute("OUT_OF_STOCK_ITEMS", outOfStockItem);
                     }
                 }//end if dto existed
             }//end if list items existed
             //5. redirect to online shopping page
         } catch (SQLException ex) {
-            log("AddItemToCartServlet _ SQL "+ex.getMessage());
+            log("AddItemToCartServlet _ SQL " + ex.getMessage());
         } catch (NamingException ex) {
-            log("AddItemToCartServlet _ Naming "+ex.getMessage());
+            log("AddItemToCartServlet _ Naming " + ex.getMessage());
+        } catch (NullPointerException ex) {
+            log("AddItemToCartServlet _ NullPointer " + ex.getMessage());
         } finally {
             response.sendRedirect(url);
         }

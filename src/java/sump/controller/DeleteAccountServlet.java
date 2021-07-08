@@ -38,8 +38,7 @@ public class DeleteAccountServlet extends HttpServlet {
             if (result) {
                 //call search again
                 url = "searchLastName"
-                        + "?btAction=Search"
-                        + "&txtSearchValue=" + searchValue;
+                        + "?txtSearchValue=" + searchValue;
             }//end if delete is successfully  
         } catch (SQLException ex) {
             log("DeleteAccountServlet _ SQL "+ex.getMessage());

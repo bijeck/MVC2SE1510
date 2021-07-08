@@ -56,8 +56,8 @@ public class RemoveItemsFromCartServlet extends HttpServlet {
                             for (String item : removeItems) {
                                 cart.removeItemFromCart(item);
                                 if (outOfStockItems != null) {
-                                    if (outOfStockItems.contains(item)) {
-                                        outOfStockItems.remove(item);
+                                    if (outOfStockItems.checkContainItems(item)) {
+                                        outOfStockItems.removeItem(item);
                                     }
                                     session.setAttribute("OUT_OF_STOCK_ITEMS", outOfStockItems);
                                 }

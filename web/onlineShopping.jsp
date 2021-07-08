@@ -18,6 +18,9 @@
     <body>
         <h1>Shopping View</h1>
         <c:set var="outOfStockItems" value="${sessionScope.OUT_OF_STOCK_ITEMS}"/>
+        <c:if test="${not empty outOfStockItems}">
+            <c:set var="outOfStockList" value="${outOfStockItems.items}"/>
+        </c:if>
         <c:set var="items" value="${sessionScope.ITEMS}"/>
         <c:if test="${empty items}">
             <h2>No product is available for Shopping!!!</h2>
@@ -49,8 +52,8 @@
                             <td>${dto.price}</td>
                             <td>
                                 <c:set var="check" value="${false}"/>
-                                <c:if test="${not empty outOfStockItems}">
-                                    <c:forEach var="item" items="${outOfStockItems}" varStatus="counter">
+                                <c:if test="${not empty outOfStockList}">
+                                    <c:forEach var="item" items="${outOfStockList}" varStatus="counter">
                                         <c:if test="${dto.sku eq item}">
                                             <c:set var="check" value="${true}"/>
                                         </c:if>

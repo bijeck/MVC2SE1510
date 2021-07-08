@@ -28,7 +28,7 @@
             Last name:<input type="text" name="txtLastname" value="${param.txtLastname}" /><br/>
             <c:if test="${not empty errors.fullnameLengthErr}">
                 <font color="red">
-                ${errors.fullnameLengthErr}</br>
+                ${errors.fullnameLengthErr}<br/>
                 </font>
             </c:if>
             Admin: <input type="checkbox" name="chkAdmin" value="ON" 
@@ -36,7 +36,7 @@
                               checked="checked"
                           </c:if>
                           /><br/>
-            <input type="submit" value="Update" name="btAction"/>
+            <input type="submit" value="Edit" name="btAction"/>
             <input type="hidden" name="lastSearchValue" value="${lastSearchValue}" />
         </form>
             <c:url var="searchLink" value="searchLastName">
