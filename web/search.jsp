@@ -28,9 +28,6 @@
         </script>
     </head>
     <body>
-        <c:if test="${empty userLogin}">
-            EMPTY USER LOGIN
-        </c:if>
         <font color="red">
         Welcome, ${sessionScope.LASTNAME}
         </font>
@@ -109,7 +106,6 @@
                                 <td>
                                     <c:url var="editLink" 
                                            value="editPage">
-                                        <c:param name="btAction" value="Edit"/>
                                         <c:param name="txtUsername" value="${dto.username}"/>
                                         <c:param name="txtPassword" value="${dto.password}"/>
                                         <c:param name="txtLastname" value="${dto.lastname}"/>

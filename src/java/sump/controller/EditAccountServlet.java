@@ -70,11 +70,8 @@ public class EditAccountServlet extends HttpServlet {
             if (foundErr) {
                 if (roadmap != null) {
                     request.setAttribute("EDIT_ERRORS", errors);
-                    url = roadmap.get(EDIT_PAGE) + "?txtUsername=" + username
-                            + "&txtPassword=" + password
-                            + "&txtLastname=" + lastname
-                            + "&role=" + role
-                            + "&lastSearchValue=" + searchValue;
+                    url = roadmap.get(EDIT_PAGE)
+                            + "?role=" + role;
                 }
             } else {
                 //call DAO

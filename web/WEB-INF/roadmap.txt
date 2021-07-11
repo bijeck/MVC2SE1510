@@ -21,3 +21,4 @@ createAccountPage=createNewAccount.jsp
 viewCart=viewCart.jsp
 searchPage=search.jsp
 shoppingPage=onlineShopping.jsp
+confirmPage=confirm.jsp

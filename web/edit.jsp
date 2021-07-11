@@ -13,10 +13,13 @@
         <title>Edit Page</title>
     </head>
     <body>
+        <font color="red">
+        Welcome, ${sessionScope.LASTNAME}
+        </font>
         <h1>Account information:</h1>
         <c:set var="lastSearchValue" value="${param.lastSearchValue}"/>
         <c:set var="errors" value="${requestScope.EDIT_ERRORS}"/>
-        <form action="edit" method="POST" onsubmit="return confirm('Are you sure to continue?');">
+        <form action="confirmPage" method="POST">
             Username: ${param.txtUsername}<br/>
             <input type="hidden" name="txtUsername" value="${param.txtUsername}" />
             Password:<input type="text" name="txtPassword" value="${param.txtPassword}" /><br/>
@@ -31,17 +34,18 @@
                 ${errors.fullnameLengthErr}<br/>
                 </font>
             </c:if>
-            Admin: <input type="checkbox" name="chkAdmin" value="ON" 
-                          <c:if test="${param.role}">
-                              checked="checked"
-                          </c:if>
-                          /><br/>
+            Role: <input type="checkbox" name="chkAdmin" value="ON" 
+                         <c:if test="${param.role}">
+                             checked="checked"
+                         </c:if>
+                         />Admin<br/>
             <input type="submit" value="Edit" name="btAction"/>
             <input type="hidden" name="lastSearchValue" value="${lastSearchValue}" />
+            <input type="hidden" name="role" value="${param.role}" />
         </form>
-            <c:url var="searchLink" value="searchLastName">
-                <c:param name="txtSearchValue" value="${lastSearchValue}"/>
-            </c:url>
+        <c:url var="searchLink" value="searchLastName">
+            <c:param name="txtSearchValue" value="${lastSearchValue}"/>
+        </c:url>
         <a href="${searchLink}">Back to Search</a>
 
     </body>

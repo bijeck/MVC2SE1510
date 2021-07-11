@@ -99,7 +99,6 @@ public class CreateNewAccountServlet extends HttpServlet {
         } catch (NamingException ex) {
             log("CreateNewAccountServlet _ Naming " + ex.getMessage());
         } finally {
-            
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);
         }
