@@ -25,9 +25,6 @@
             30
         </session-timeout>
     </session-config>
-    <!--<welcome-file-list>
-        <welcome-file>DispatchController</welcome-file>
-    </welcome-file-list>-->
     <resource-ref>
         <res-ref-name>DSBlink</res-ref-name>
         <res-type>javax.sql.DataSource</res-type>

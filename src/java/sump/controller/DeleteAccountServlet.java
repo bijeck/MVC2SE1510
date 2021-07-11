@@ -10,9 +10,11 @@ import java.sql.SQLException;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import sump.registration.RegistrationDAO;
 
 /**
@@ -23,9 +25,10 @@ import sump.registration.RegistrationDAO;
 public class DeleteAccountServlet extends HttpServlet {
 
     private final String ERROR_PAGE = "errors";
+    private final String LOGIN_PAGE = "loginPage";
 
-    protected void processRequest(HttpServletRequest request, 
-                                  HttpServletResponse response)
+    protected void processRequest(HttpServletRequest request,
+            HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String username = request.getParameter("username");
@@ -39,14 +42,35 @@ public class DeleteAccountServlet extends HttpServlet {
                 //call search again
                 url = "searchLastName"
                         + "?txtSearchValue=" + searchValue;
+                //check username is logining
+                HttpSession session = request.getSession(false);
+                if (session != null) {
+                    String usernameLogin = (String) session.getAttribute("LOGIN_USERNAME");
+                    if (usernameLogin.equals(username)) {
+                        url = LOGIN_PAGE;
+                        session.invalidate();
+                        //xoa cookie
+                        Cookie[] cookies = request.getCookies();
+                        if (cookies != null) {
+                            for (Cookie cookie : cookies) {
+                                if (!cookie.getName().equals("JSESSIONID")) {
+                                    cookie.setValue("");
+                                    cookie.setMaxAge(1);
+                                    response.addCookie(cookie);
+                                }
+                            }//end traverse cookies
+                        }//end if cookies existed
+                    }
+                }//end if session existed
+
             }//end if delete is successfully  
         } catch (SQLException ex) {
-            log("DeleteAccountServlet _ SQL "+ex.getMessage());
+            log("DeleteAccountServlet _ SQL " + ex.getMessage());
         } catch (NamingException ex) {
-            log("DeleteAccountServlet _ Naming "+ex.getMessage());
+            log("DeleteAccountServlet _ Naming " + ex.getMessage());
         } finally {
-            //nen ket thuc old req vi da co btAction==> lap lai btAction
-            response.sendRedirect(url);//taoj ra req moi co btAction moi
+            //cap nhat lai cookie
+            response.sendRedirect(url);
         }
     }
 

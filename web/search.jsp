@@ -13,9 +13,24 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Search</title>
+        <title>Search Page</title>
+        <c:set var="userLogin" value="${sessionScope.LOGIN_USERNAME}"/>
+        <script>
+            function checkDeleteUserLogin(username) {
+                var userLogin = '${userLogin}';
+                var message = 'You will delete a account. Are you sure to continue?';
+                if (userLogin === username) {
+                    message = 'You will delete your account. So you will logout. Are you sure to continue?';
+                }
+                return confirm(message);
+
+            }
+        </script>
     </head>
     <body>
+        <c:if test="${empty userLogin}">
+            EMPTY USER LOGIN
+        </c:if>
         <font color="red">
         Welcome, ${sessionScope.LASTNAME}
         </font>
@@ -86,7 +101,7 @@
                                         <c:param name="username" value="${dto.username}"/>
                                         <c:param name="lastSearchValue" value="${searchValue}"/>
                                     </c:url>
-                                    <a href="${deleteLink}">Delete</a>
+                                    <a href="${deleteLink}" onclick="return checkDeleteUserLogin('${dto.username}');">Delete</a>
                                 </td>
                                 <td>
                                     <input type="submit" value="Update" name="btAction" />

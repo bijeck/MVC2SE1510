@@ -63,6 +63,7 @@ public class ProcessRequestServlet extends HttpServlet {
                     if (!lastname.isEmpty()) {
                         HttpSession session = request.getSession();
                         session.setAttribute("LASTNAME", lastname);
+                        session.setAttribute("LOGIN_USERNAME", username);
                         url = SEARCH_PAGE;
                         break;
                     }//end authetication is success checked

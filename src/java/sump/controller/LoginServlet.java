@@ -55,6 +55,7 @@ public class LoginServlet extends HttpServlet {
                 HttpSession session = request.getSession();
                 //get full name from username via Dao
                 session.setAttribute("LASTNAME", lastname);
+                session.setAttribute("LOGIN_USERNAME", username);
                 //Luu thong tin xuong file cookie client
                 Cookie cookie = new Cookie(username, password);
                 cookie.setMaxAge(60 * 3);

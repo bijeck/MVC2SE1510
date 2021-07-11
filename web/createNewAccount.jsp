@@ -39,7 +39,7 @@
                 ${errors.comfirmNotMatch}<br>
                 </font>
             </c:if>
-            Full name <input type="text" name="txtFullname" value="${param.txtFullname}" />(6 - 50 chars)</br>
+            Full name <input type="text" name="txtFullname" value="${param.txtFullname}" />(2 - 50 chars)</br>
             <c:if test="${not empty errors.fullnameLengthErr}">
                 <font color="red">
                 ${errors.fullnameLengthErr}</br>

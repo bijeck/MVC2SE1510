@@ -43,7 +43,7 @@ public class LogoutServlet extends HttpServlet {
                 for (Cookie cookie : cookies) {
                     if (!cookie.getName().equals("JSESSIONID")) {
                         cookie.setValue("");
-                        cookie.setMaxAge(60 * 1);
+                        cookie.setMaxAge(1);
                         response.addCookie(cookie);
                     }
                 }
